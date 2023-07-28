@@ -1,20 +1,11 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Atida and Tayana blog</title>
-    </head>
-    <body>
-        <article>
-            <h1><a href="">Atida and Tayana Blog</a></h1>
-        </article>
+{% extends 'blog/base.html' %}
 
-        {% for post in posts %}
-        <article>
-            <h1><a href="">{{ post.title }}</a></h1>
-            <time>published: {{ post.published_date }}</time>
+{% block content %}
+    {% for post in posts %}
+        <article class="post">
+            <time class="date">{{ post.published_date }}</time>
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
             <p>{{ post.text|linebreaksbr }}</p>
         </article>
-        {% endfor %}
-
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}
